@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>九一樱花动漫 - 在线动漫视频社区,追番不止一种方式</title>
+<meta name="description" content="九一樱花动漫是以高清在线动漫、新番同步与创作者社区为核心的视频品牌官网，汇聚海量剧集与原创短片，陪你追番、弹幕、创作与分享。">
+<style>
+:root{
+  --sakura:#ff7b9c;
+  --sakura-deep:#e64a75;
+  --sakura-soft:#ffe3ec;
+  --ink:#1a1a2e;
+  --ink-2:#2d2d44;
+  --muted:#6b6b85;
+  --bg:#fdf9fb;
+  --card:#ffffff;
+  --line:#f0dde5;
+  --gold:#f7b731;
+  --sky:#5b8dee;
+  --mint:#2fc78e;
+  --radius:18px;
+  --shadow:0 18px 50px -22px rgba(230,74,117,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+
+/* ---------- 花瓣飘落背景 ---------- */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.petal{
+  position:absolute;top:-40px;width:14px;height:14px;
+  background:radial-gradient(circle at 30% 30%,#ffd0de,#ff9cb8);
+  border-radius:14px 0 14px 0;opacity:.55;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
+  10%{opacity:.6}
+  100%{transform:translate3d(60px,110vh,0) rotate(520deg);opacity:0}
+}
+
+/* ---------- 顶部导航 ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);
+  background:rgba(253,249,251,.82);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;gap:34px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:.5px}
+.logo .mark{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--sakura),var(--sakura-deep));
+  display:grid;place-items:center;color:#fff;font-size:18px;
+  box-shadow:0 8px 20px -8px var(--sakura-deep);
+}
+.logo span b{color:var(--sakura-deep)}
+.menu{display:flex;gap:26px;font-size:15px;color:var(--muted);font-weight:500}
+.menu a{position:relative;padding:6px 0;transition:.25s}
+.menu a::after{
+  content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;
+  background:var(--sakura-deep);transition:.3s;border-radius:2px;
+}
+.menu a:hover{color:var(--sakura-deep)}
+.menu a:hover::after{width:100%}
+.nav-actions{margin-left:auto;display:flex;align-items:center;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;cursor:pointer;font-family:inherit;font-weight:600;
+  border-radius:999px;transition:.28s;white-space:nowrap;
+}
+.btn-ghost{background:transparent;color:var(--ink);padding:9px 18px;font-size:14px;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--sakura);color:var(--sakura-deep)}
+.btn-primary{
+  background:linear-gradient(135deg,var(--sakura),var(--sakura-deep));
+  color:#fff;padding:11px 24px;font-size:14px;
+  box-shadow:0 12px 26px -12px var(--sakura-deep);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 32px -12px var(--sakura-deep)}
+.search{
+  display:flex;align-items:center;gap:8px;background:#fff;
+  border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+  color:var(--muted);font-size:13.5px;width:210px;transition:.25s;
+}
+.search:focus-within{border-color:var(--sakura);box-shadow:0 0 0 4px var(--sakura-soft)}
+.search input{border:none;outline:none;background:transparent;font-family:inherit;font-size:13.5px;width:100%;color:var(--ink)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:70px 0 80px;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;top:-220px;right:-160px;width:640px;height:640px;
+  background:radial-gradient(circle,rgba(255,123,156,.28),transparent 65%);
+  border-radius:50%;z-index:0;
+}
+.hero::after{
+  content:"";position:absolute;bottom:-260px;left:-180px;width:560px;height:560px;
+  background:radial-gradient(circle,rgba(91,141,238,.18),transparent 65%);
+  border-radius:50%;z-index:0;
+}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.tagline{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+  color:var(--sakura-deep);background:var(--sakura-soft);
+  padding:7px 16px;border-radius:999px;margin-bottom:22px;
+}
+.tagline .dot{width:7px;height:7px;border-radius:50%;background:var(--sakura-deep);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(40px,5.2vw,64px);line-height:1.12;letter-spacing:-1px;
+  font-weight:800;margin-bottom:22px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--sakura-deep),var(--sky));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{font-size:17px;color:var(--muted);max-width:520px;margin-bottom:32px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-cta .btn-primary{padding:15px 34px;font-size:15px}
+.hero-cta .btn-ghost{padding:15px 30px;font-size:15px;background:#fff}
+.hero-stats{display:flex;gap:44px;margin-top:46px;flex-wrap:wrap}
+.hero-stats .st b{display:block;font-size:26px;font-weight:800;letter-spacing:-.5px}
+.hero-stats .st span{font-size:13px;color:var(--muted)}
+
+/* 播放器卡片 */
+.player-card{
+  position:relative;background:#fff;border-radius:26px;padding:14px;
+  box-shadow:var(--shadow);border:1px solid var(--line);
+}
+.screen{
+  position:relative;border-radius:18px;overflow:hidden;
+  aspect-ratio:16/10;
+  background:
+    radial-gradient(circle at 78% 24%,rgba(255,255,255,.55),transparent 42%),
+    linear-gradient(150deg,#ffd3e0 0%,#ffb3c9 38%,#a7c0ff 100%);
+}
+.screen .sun{
+  position:absolute;top:26px;right:38px;width:70px;height:70px;border-radius:50%;
+  background:radial-gradient(circle,#fff6c9,#ffd66e);box-shadow:0 0 60px 12px rgba(255,214,110,.55);
+}
+.screen svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.play-btn{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:82px;height:82px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,.9);display:grid;place-items:center;
+  box-shadow:0 20px 50px -16px rgba(230,74,117,.7);transition:.3s;
+}
+.play-btn:hover{transform:translate(-50%,-50%) scale(1.08);background:#fff}
+.play-btn svg{margin-left:5px}
+.screen .badge{
+  position:absolute;left:16px;top:16px;background:rgba(26,26,46,.72);
+  color:#fff;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;
+  display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px);
+}
+.screen .badge i{width:7px;height:7px;border-radius:50%;background:#ff4d6d;animation:pulse 1.4s infinite}
+.screen .bar{
+  position:absolute;left:16px;right:16px;bottom:14px;height:5px;border-radius:99px;
+  background:rgba(255,255,255,.4);overflow:hidden;
+}
+.screen .bar b{display:block;height:100%;width:42%;border-radius:99px;background:linear-gradient(90deg,#fff,var(--sakura-deep))}
+.player-meta{display:flex;align-items:center;justify-content:space-between;padding:16px 10px 6px;gap:12px}
+.player-meta .t{font-weight:700;font-size:15px}
+.player-meta .s{font-size:12.5px;color:var(--muted)}
+.chip-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.chip{
+  font-size:12.5px;color:var(--muted);background:#fff;border:1px solid var(--line);
+  padding:6px 14px;border-radius:999px;
+}
+.chip.hot{color:var(--sakura-deep);border-color:var(--sakura);background:var(--sakura-soft);font-weight:600}
+
+/* ---------- 通用区块头 ---------- */
+section{position:relative;z-index:2}
+.sec{padding:78px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+.sec-head .kicker{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--sakura-deep);text-transform:uppercase;margin-bottom:10px}
+.sec-head h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.5px;line-height:1.25}
+.sec-head p{color:var(--muted);font-size:15px;max-width:520px;margin-top:10px}
+.sec-link{font-size:14px;font-weight:600;color:var(--sakura-deep);display:inline-flex;align-items:center;gap:6px;transition:.25s}
+.sec-link:hover{gap:12px}
+
+/* ---------- 特色 ---------- */
+.features{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feat{
+  padding:30px 26px;border-radius:var(--radius);background:var(--bg);
+  border:1px solid var(--line);transition:.32s;position:relative;overflow:hidden;
+}
+.feat::after{
+  content:"";position:absolute;right:-40px;bottom:-40px;width:120px;height:120px;border-radius:50%;
+  background:var(--sakura-soft);opacity:.6;transition:.4s;
+}
+.feat:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--sakura)}
+.feat:hover::after{transform:scale(1.6)}
+.feat .ico{
+  width:50px;height:50px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--sakura-soft),#fff);margin-bottom:18px;position:relative;z-index:1;
+}
+.feat h3{font-size:17px;margin-bottom:8px;position:relative;z-index:1}
+.feat p{font-size:14px;color:var(--muted);position:relative;z-index:1}
+
+/* ---------- 内容矩阵 ---------- */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.tab{
+  border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:9px 20px;font-size:14px;font-weight:600;color:var(--muted);
+  cursor:pointer;font-family:inherit;transition:.25s;
+}
+.tab:hover{border-color:var(--sakura);color:var(--sakura-deep)}
+.tab.active{background:linear-gradient(135deg,var(--sakura),var(--sakura-deep));color:#fff;border-color:transparent;box-shadow:0 12px 26px -14px var(--sakura-deep)}
+.grid-video{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.video-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+  transition:.3s;cursor:pointer;
+}
+.video-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--sakura)}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden}
+.thumb svg{width:100%;height:100%;transition:.5s}
+.video-card:hover .thumb svg{transform:scale(1.06)}
+.thumb .dur{
+  position:absolute;right:10px;bottom:10px;background:rgba(26,26,46,.78);color:#fff;
+  font-size:11.5px;padding:3px 9px;border-radius:6px;font-weight:600;letter-spacing:.3px;
+}
+.thumb .ep{
+  position:absolute;left:10px;top:10px;background:rgba(255,255,255,.9);color:var(--sakura-deep);
+  font-size:11.5px;padding:3px 10px;border-radius:6px;font-weight:700;
+}
+.video-body{padding:18px 20px 20px}
+.video-body h3{font-size:16px;margin-bottom:8px;line-height:1.45}
+.video-body .desc{font-size:13.5px;color:var(--muted);margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.video-foot{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.video-foot .who{display:flex;align-items:center;gap:8px}
+.avatar{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+
+/* ---------- 社区热榜 ---------- */
+.community{background:linear-gradient(180deg,#fff,var(--bg))}
+.comm-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:start}
+.rank-card{background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:26px 28px}
+.rank-card h3{font-size:18px;margin-bottom:20px;display:flex;align-items:center;gap:9px}
+.rank-item{
+  display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px dashed var(--line);
+  transition:.25s;
+}
+.rank-item:last-child{border-bottom:none;padding-bottom:0}
+.rank-item:hover{transform:translateX(5px)}
+.rank-item .no{
+  font-size:17px;font-weight:800;font-style:italic;width:26px;color:var(--muted);flex-shrink:0;
+}
+.rank-item:nth-child(2) .no{color:#ff4d6d}
+.rank-item:nth-child(3) .no{color:#ff8c42}
+.rank-item:nth-child(4) .no{color:var(--gold)}
+.rank-item .info{flex:1;min-width:0}
+.rank-item .info b{font-size:14.5px;display:block;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-item .info span{font-size:12.5px;color:var(--muted)}
+.rank-item .hot{font-size:12px;color:var(--sakura-deep);font-weight:700;background:var(--sakura-soft);padding:3px 10px;border-radius:99px;flex-shrink:0}
+.bulletin{display:flex;flex-direction:column;gap:20px}
+.note{
+  background:#fff;border-radius:var(--radius);border:1px solid var(--line);padding:24px 26px;
+  transition:.3s;
+}
+.note:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.note .tag{font-size:12px;font-weight:700;color:var(--sky);margin-bottom:10px;letter-spacing:1px}
+.note h4{font-size:16px;margin-bottom:8px}
+.note p{font-size:13.5px;color:var(--muted)}
+.note .date{font-size:12px;color:#aaa;margin-top:14px}
+.barrier{background:linear-gradient(135deg,var(--sakura-soft),#eef3ff);border-color:transparent}
+.barrier .tag{color:var(--sakura-deep)}
+.barrier .digits{display:flex;gap:20px;margin-top:18px}
+.barrier .digits div b{font-size:22px;font-weight:800;display:block;line-height:1.2}
+.barrier .digits div span{font-size:12px;color:var(--muted)}
+
+/* ---------- 创作者计划 ---------- */
+.creator{background:var(--ink);color:#fff;border-radius:34px;padding:60px 56px;position:relative;overflow:hidden}
+.creator::before{
+  content:"";position:absolute;top:-120px;right:-80px;width:380px;height:380px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,123,156,.45),transparent 68%);
+}
+.creator::after{
+  content:"";position:absolute;bottom:-160px;left:-100px;width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(91,141,238,.35),transparent 68%);
+}
+.creator-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.creator .kicker{color:var(--sakura);font-size:13px;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+.creator h2{font-size:clamp(26px,3vw,36px);line-height:1.28;margin-bottom:18px;letter-spacing:-.5px}
+.creator p{color:rgba(255,255,255,.72);font-size:15px;margin-bottom:28px;max-width:480px}
+.creator .btn-primary{background:#fff;color:var(--ink);box-shadow:none}
+.creator .btn-primary:hover{background:var(--sakura);color:#fff}
+.creator-steps{display:flex;flex-direction:column;gap:16px}
+.step{
+  display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px 20px;
+  transition:.3s;
+}
+.step:hover{background:rgba(255,255,255,.12);transform:translateX(6px)}
+.step .n{
+  width:30px;height:30px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--sakura),var(--sakura-deep));font-weight:800;font-size:14px;
+}
+.step b{display:block;font-size:14.5px;margin-bottom:3px}
+.step span{font-size:12.5px;color:rgba(255,255,255,.6)}
+
+/* ---------- 数据带 ---------- */
+.stats-band{padding:56px 0}
+.band{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  background:#fff;border:1px solid var(--line);border-radius:24px;padding:44px 28px;
+  box-shadow:0 30px 60px -46px rgba(230,74,117,.5);
+}
+.band .item{text-align:center;position:relative}
+.band .item+.item::before{
+  content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:1px;height:44px;background:var(--line);
+}
+.band b{font-size:34px;font-weight:800;letter-spacing:-1px;display:block;line-height:1.1;
+  background:linear-gradient(120deg,var(--sakura-deep),var(--sky));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.band span{font-size:13.5px;color:var(--muted);margin-top:8px;display:block}
+
+/* ---------- 会员订阅 ---------- */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.plan{
+  background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px 30px;
+  transition:.32s;position:relative;
+}
+.plan:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.plan.featured{
+  border-color:var(--sakura);background:linear-gradient(180deg,#fff6f9,#fff);
+  box-shadow:0 24px 60px -36px var(--sakura-deep);
+}
+.plan .ribbon{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--sakura),var(--sakura-deep));color:#fff;
+  font-size:12px;font-weight:700;padding:5px 18px;border-radius:99px;white-space:nowrap;
+  box-shadow:0 10px 22px -12px var(--sakura-deep);
+}
+.plan h3{font-size:17px;margin-bottom:6px}
+.plan .sub{font-size:13px;color:var(--muted);margin-bottom:22px}
+.plan .price{display:flex;align-items:baseline;gap:5px;margin-bottom:24px}
+.plan .price b{font-size:38px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.plan .price small{font-size:13px;color:var(--muted)}
+.plan ul{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.plan li{font-size:13.5px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+.plan li .ck{flex-shrink:0;margin-top:3px}
+.plan li.mute{color:#b3b3c4;text-decoration:line-through;text-decoration-color:#e3e3ee}
+.plan .btn{width:100%;padding:13px;font-size:14px}
+.plan .btn-line{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.plan .btn-line:hover{border-color:var(--sakura);color:var(--sakura-deep)}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:860px;margin:0 auto}
+.faq-item{
+  border-bottom:1px solid var(--line);padding:6px 0;
+}
+.faq-q{
+  width:100%;background:none;border:none;font-family:inherit;text-align:left;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 4px;font-size:15.5px;font-weight:600;color:var(--ink);
+}
+.faq-q .ic{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--line);flex-shrink:0;
+  display:grid;place-items:center;transition:.3s;color:var(--sakura-deep);font-size:16px;
+}
+.faq-item.open .faq-q .ic{transform:rotate(45deg);background:var(--sakura-soft);border-color:var(--sakura)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;font-size:14px;color:var(--muted)}
+.faq-a p{padding:0 4px 22px}
+
+/* ---------- 底部 ---------- */
+footer{background:#15151f;color:rgba(255,255,255,.62);padding:70px 0 32px;position:relative;z-index:2}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:52px}
+.foot-brand .logo{color:#fff;margin-bottom:18px}
+.foot-brand p{font-size:13.5px;max-width:320px;line-height:1.85;margin-bottom:22px}
+.foot-social{display:flex;gap:12px}
+.foot-social a{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);transition:.28s;
+}
+.foot-social a:hover{background:var(--sakura-deep);transform:translateY(-3px)}
+.foot-col h5{color:#fff;font-size:14px;margin-bottom:18px;font-weight:700}
+.foot-col a{display:block;font-size:13.5px;margin-bottom:12px;transition:.25s}
+.foot-col a:hover{color:var(--sakura)}
+.foot-bot{
+  border-top:1px solid rgba(255,255,255,.1);padding-top:26px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12.5px;
+}
+.foot-bot .links{display:flex;gap:22px;flex-wrap:wrap}
+
+/* ---------- 动画 ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .grid-video{grid-template-columns:repeat(2,1fr)}
+  .comm-grid{grid-template-columns:1fr}
+  .creator-inner{grid-template-columns:1fr;gap:34px}
+  .band{grid-template-columns:repeat(2,1fr);gap:34px 20px}
+  .band .item:nth-child(3)::before{display:none}
+  .plans{grid-template-columns:1fr;max-width:460px;margin:0 auto}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .menu{display:none}
+  .search{display:none}
+}
+@media (max-width:640px){
+  .nav{height:60px;gap:16px}
+  .feat-grid,.grid-video{grid-template-columns:1fr}
+  .hero{padding:44px 0 56px}
+  .hero-stats{gap:26px}
+  .hero-stats .st b{font-size:22px}
+  .sec{padding:54px 0}
+  .creator{padding:40px 24px;border-radius:26px}
+  .band{grid-template-columns:1fr;padding:34px 22px}
+  .band .item+.item::before{display:none}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column}
+  .sec-head{margin-bottom:28px}
+  .player-card{padding:10px}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <span class="mark">九</span>
+      <span>九一<b>樱花</b>动漫</span>
+    </a>
+    <nav class="menu">
+      <a href="#videos">番剧库</a>
+      <a href="#community">社区热榜</a>
+      <a href="#creator">创作者</a>
+      <a href="#plans">会员</a>
+      <a href="#faq">帮助</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+        <input type="text" placeholder="搜索番剧、UP 主或标签" aria-label="搜索">
+      </div>
+      <button class="btn btn-ghost">登录</button>
+      <button class="btn btn-primary">免费观看</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tagline"><i class="dot"></i>新番同步更新 · 今日已上线 36 部</span>
+        <h1>九一樱花动漫<br><em>把每个追番夜晚</em><br>都变成期待</h1>
+        <p class="lead">高清正版番剧、原创短片与同好社区，一站集齐。从清晨的第一集到深夜的最后一话，九一樱花动漫陪你追完每一段故事，也让你的创作被更多人看见。</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary">立即观看新番</button>
+          <a class="btn btn-ghost" href="#creator">成为创作者</a>
+        </div>
+        <div class="hero-stats">
+          <div class="st"><b>12,800+</b><span>在架番剧与短片</span></div>
+          <div class="st"><b>860 万</b><span>注册同好</span></div>
+          <div class="st"><b>4.9 / 5</b><span>社区口碑评分</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="player-card">
+          <div class="screen">
+            <div class="sun"></div>
+            <svg class="scene" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs>
+                <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7f9cf5"/><stop offset="100%" stop-color="#a3b8f7"/>
+                </linearGradient>
+                <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5b8dee"/><stop offset="100%" stop-color="#7f9cf5"/>
+                </linearGradient>
+                <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffd8e4"/><stop offset="100%" stop-color="#ffb9cd"/>
+                </linearGradient>
+              </defs>
+              <circle cx="470" cy="120" r="150" fill="#ffffff" opacity="0.18"/>
+              <path d="M0 250 Q140 180 290 235 T640 210 L640 400 L0 400 Z" fill="url(#hill1)" opacity="0.85"/>
+              <path d="M0 300 Q180 240 340 292 T640 268 L640 400 L0 400 Z" fill="url(#hill2)" opacity="0.9"/>
+              <path d="M0 340 Q200 300 400 336 T640 320 L640 400 L0 400 Z" fill="url(#ground)"/>
+              <!-- 樱花树 -->
+              <g>
+                <path d="M120 340 L120 268" stroke="#b06a52" stroke-width="9" stroke-linecap="round"/>
+                <path d="M120 300 L92 274 M120 288 L150 262" stroke="#b06a52" stroke-width="6" stroke-linecap="round"/>
+                <circle cx="96" cy="256" r="30" fill="#ff9cba" opacity="0.95"/>
+                <circle cx="140" cy="246" r="34" fill="#ffb6cc" opacity="0.95"/>
+                <circle cx="118" cy="222" r="30" fill="#ffc9d9" opacity="0.95"/>
+                <circle cx="86" cy="284" r="20" fill="#ffb6cc" opacity="0.9"/>
+                <circle cx="154" cy="276" r="22" fill="#ff9cba" opacity="0.9"/>
+              </g>
+              <!-- 小人剪影 -->
+              <g fill="#2d2d44" opacity="0.82">
+                <circle cx="330" cy="316" r="11"/>
+                <path d="M319 330 h22 v26 h-22 z"/>
+                <path d="M319 356 l-5 26 h8 l6 -20 l6 20 h8 l-5 -26 z"/>
+                <circle cx="382" cy="322" r="9"/>
+                <path d="M373 334 h18 v22 h-18 z"/>
+                <path d="M373 356 l-4 22 h7 l4 -17 l4 17 h7 l-4 -22 z"/>
+              </g>
+              <!-- 飘落花瓣 -->
+              <g fill="#ff9cba" opacity="0.85">
+                <ellipse cx="430" cy="200" rx="4" ry="7" transform="rotate(25 430 200)"/>
+                <ellipse cx="480" cy="256" rx="3.5" ry="6" transform="rotate(-30 480 256)"/>
+                <ellipse cx="380" cy="240" rx="3" ry="5.5" transform="rotate(50 380 240)"/>
+                <ellipse cx="520" cy="180" rx="3" ry="5.5" transform="rotate(-15 520 180)"/>
+              </g>
+            </svg>
+            <span class="badge"><i></i>正在热映</span>
+            <button class="play-btn" aria-label="播放预告">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="#e64a75"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <div class="bar"><b></b></div>
+          </div>
+          <div class="player-meta">
+            <div>
+              <div class="t">《樱色回响》第 12 话 · 夏夜的风</div>
+              <div class="s">九一原创剧场 · 4K 修复版 · 播放中</div>
+            </div>
+            <div class="chip hot">本周热度 TOP 1</div>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">新番同步</span>
+          <span class="chip">无广告观看</span>
+          <span class="chip">弹幕互动</span>
+          <span class="chip">多端续播</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="kicker">Why Sakura</div>
+          <h2>为看番这件事，把细节做到位</h2>
+          <p>从加载速度到字幕排布，九一樱花动漫把观看体验拆成四个可感知的部分，逐项打磨。</p>
+        </div>
+        <a class="sec-link" href="#videos">查看全部能力 →</a>
+      </div>
+      <div class="feat-grid">
+        <div class="feat reveal">
+          <div class="ico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e64a75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </div>
+          <h3>极速秒开播放</h3>
+          <p>自建边缘节点与自适应码率调度，首帧平均加载 0.6 秒，弱网环境下依然稳定不卡顿。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5b8dee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3>正版高清画质</h3>
+          <p>与多家版权方深度合作，主流番剧提供 1080P / 4K 片源，画面与音轨均经过专业校对。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2fc78e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          </div>
+          <h3>有温度的弹幕</h3>
+          <p>弹幕分轨、关键词过滤与时间轴校准，热闹不刷屏，精彩瞬间有人一起共鸣。</p>
+        </div>
+        <div class="feat reveal">
+          <div class="ico">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7b731" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+          </div>
+          <h3>多端无缝续播</h3>
+          <p>手机、平板、电视与网页端进度实时同步，通勤路上看到哪，回家大屏接着看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="sec" id="videos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="kicker">Library</div>
+          <h2>今日内容矩阵</h2>
+          <p>新番剧集、原创短片、剪辑精选与幕后花絮，按你的心情挑一个入口。</p>
+        </div>
+        <a class="sec-link" href="#community">查看完整番剧库 →</a>
+      </div>
+
+      <div class="tabs reveal">
+        <button class="tab active" data-filter="all">全部</button>
+        <button class="tab" data-filter="anime">新番剧集</button>
+        <button class="tab" data-filter="short">原创短片</button>
+        <button class="tab" data-filter="edit">剪辑精选</button>
+        <button class="tab" data-filter="behind">幕后花絮</button>
+      </div>
+
+      <div class="grid-video" id="videoGrid"></div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community sec" id="community">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="kicker">Community</div>
+          <h2>社区正在发生什么</h2>
+          <p>每一条热榜背后都有真实的讨论、二创与安利，九一樱花动漫的活力来自每一个你。</p>
+        </div>
+      </div>
+
+      <div class="comm-grid">
+        <div class="rank-card reveal">
+          <h3>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#e64a75"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg>
+            本周追番热度榜
+          </h3>
+          <div class="rank-list" id="rankList"></div>
+        </div>
+
+        <div class="bulletin">
+          <div class="note barrier reveal">
+            <div class="tag">SAKURA DATA</div>
+            <h4>社区活力数据</h4>
+            <p>过去 7 天，九一樱花动漫的弹幕总量、二创投稿与评论区互动持续增长。</p>
+            <div class="digits">
+              <div><b>214 万</b><span>本周弹幕</span></div>
+              <div><b>9,860</b><span>二创新增</span></div>
+              <div><b>38 万</b><span>评论互动</span></div>
+            </div>
+          </div>
+          <div class="note reveal">
+            <div class="tag">ANNOUNCEMENT</div>
+            <h4>七周年同人企划正式启动</h4>
+            <p>面向所有同好征集短篇动画与插画作品，入选作品将在官方频道展映，并获得创作基金支持。</p>
+            <div class="date">2024 · 企划公告</div>
+          </div>
+          <div class="note reveal">
+            <div class="tag">LIVE</div>
+            <h4>樱花夜谈 · 声优连线回放</h4>
+            <p>三位主役声优聊了聊角色配音幕后，直播回放已上线，社区同步开放观后讨论楼。</p>
+            <div class="date">直播回放已上线</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATOR -->
+  <section class="sec" id="creator">
+    <div class="wrap">
+      <div class="creator reveal">
+        <div class="creator-inner">
+          <div>
+            <div class="kicker">CREATOR PROGRAM</div>
+            <h2>把你的动画梦<br>放在樱花树下生长</h2>
+            <p>九一樱花动漫创作者计划为独立动画人、剪辑师与同人作者提供流量扶持、创作基金与版权服务，让你的作品被 860 万同好看见。</p>
+            <button class="btn btn-primary">申请加入创作者计划</button>
+          </div>
+          <div class="creator-steps">
+            <div class="step"><span class="n">01</span><div><b>注册并上传作品</b><span>支持短片、连载与竖屏内容，上传即进入初审</span></div></div>
+            <div class="step"><span class="n">02</span><div><b>获得流量扶持</b><span>新作冷启动推荐位与专题曝光，加速被看见</span></div></div>
+            <div class="step"><span class="n">03</span><div><b>内容变现与授权</b><span>创作基金、打赏分成与商业授权一站式对接</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="stats-band">
+    <div class="wrap">
+      <div class="band reveal">
+        <div class="item"><b>12,800+</b><span>在架番剧与短片</span></div>
+        <div class="item"><b>860 万</b><span>累计注册同好</span></div>
+        <div class="item"><b>36 部</b><span>今日上线新内容</span></div>
+        <div class="item"><b>99.2%</b><span>播放稳定可用率</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="sec" id="plans">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div>
+          <div class="kicker">Membership</div>
+          <h2>选择适合你的观看方式</h2>
+          <p>免费也能看，会员更畅快。所有付费方案均可随时取消，不设自动续费陷阱。</p>
+        </div>
+      </div>
+      <div class="plans">
+        <div class="plan reveal">
+          <h3>免费体验</h3>
+          <div class="sub">适合偶尔来逛逛的你</div>
+          <div class="price"><b>¥0</b><small>/ 永久</small></div>
+          <ul>
+            <li><span class="ck">✓</span>海量精选番剧免费观看</li>
+            <li><span class="ck">✓</span>720P 标清画质</li>
+            <li><span class="ck">✓</span>基础弹幕与评论互动</li>
+            <li class="mute"><span class="ck">·</span>4K 超清与 HDR 画质</li>
+            <li class="mute"><span class="ck">·</span>新番提前看</li>
+          </ul>
+          <button class="btn btn-line">立即体验</button>
+        </div>
+
+        <div class="plan featured reveal">
+          <div class="ribbon">最受欢迎</div>
+          <h3>樱花会员</h3>
+          <div class="sub">追番党的日常选择</div>
+          <div class="price"><b>¥18</b><small>/ 月</small></div>
+          <ul>
+            <li><span class="ck">✓</span>全站番剧无广告观看</li>
+            <li><span class="ck">✓</span>1080P / 4K 超清画质</li>
+            <li><span class="ck">✓</span>新番同步与提前看</li>
+            <li><span class="ck">✓</span>多端进度实时续播</li>
+            <li><span class="ck">✓</span>专属会员弹幕样式</li>
+          </ul>
+          <button class="btn btn-primary">开通樱花会员</button>
+        </div>
+
+        <div class="plan reveal">
+          <h3>年度尊享</h3>
+          <div class="sub">把一整年都留给好故事</div>
+          <div class="price"><b>¥168</b><small>/ 年 · 省 ¥48</small></div>
+          <ul>
+            <li><span class="ck">✓</span>包含樱花会员全部权益</li>
+            <li><span class="ck">✓</span>年度限定周边优先购</li>
+            <li><span class="ck">✓</span>线下放映会预约资格</li>
+            <li><span class="ck">✓</span>创作者基金投票权</li>
+            <li><span class="ck">✓</span>年度观番报告与徽章</li>
+          </ul>
+          <button class="btn btn-line">开通年度尊享</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+        <div>
+          <div class="kicker">FAQ</div>
+          <h2>常见问题</h2>
+        </div>
+      </div>
+      <div class="faq" id="faqList">
+        <div class="faq-item open">
+          <button class="faq-q">九一樱花动漫的内容是正版授权的吗？<span class="ic">+</span></button>
+          <div class="faq-a"><p>九一樱花动漫与国内外多家版权机构保持长期合作，站内标注「正版」标识的番剧与短片均为授权内容。原创短片与同人作品由创作者自行上传，平台提供版权登记与侵权投诉通道。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">新番一般什么时候更新？<span class="ic">+</span></button>
+          <div class="faq-a"><p>同步番剧通常在日本播出后 1 小时内上线，具体时间会在番剧详情页标注更新日历。你也可以在个人中心订阅提醒，更新后会第一时间推送通知。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">会员可以在几个设备上使用？<span class="ic">+</span></button>
+          <div class="faq-a"><p>同一个樱花会员账号支持最多 3 台设备同时在线，进度在手机、平板、电视与网页端实时同步。如遇异常登录，可在安全中心一键下线全部设备。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">我想上传自己的动画作品，有什么要求？<span class="ic">+</span></button>
+          <div class="faq-a"><p>作品需为原创或已取得合法授权，画面建议不低于 1080P，时长 30 秒至 30 分钟均可。加入创作者计划后可获得流量扶持与创作基金申请资格，具体规范可查看创作者中心的投稿指引。</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">遇到播放问题怎么反馈？<span class="ic">+</span></button>
+          <div class="faq-a"><p>播放页面右下角设有「反馈」入口，提交问题时会自动附带设备与网络信息，便于技术团队定位。也欢迎在社区「产品建议」板块留言，我们平均 24 小时内响应。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top">
+          <span class="mark">九</span>
+          <span>九一<b style="color:#ff7b9c">樱花</b>动漫</span>
+        </a>
+        <p>九一樱花动漫是一个以动画视频为核心的内容社区，提供正版番剧、原创短片与同好交流空间。我们相信好故事值得被认真对待。</p>
+        <div class="foot-social">
+          <a href="#" aria-label="微博"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></a>
+          <a href="#" aria-label="哔哩"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M8 3l3 3M16 3l-3 3"/></svg></a>
+          <a href="#" aria-label="微信"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="9" cy="10" r="6"/><circle cx="16.5" cy="15.5" r="4.5"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>内容</h5>
+        <a href="#videos">新番剧集</a>
+        <a href="#videos">原创短片</a>
+        <a href="#community">社区热榜</a>
+        <a href="#creator">创作者中心</a>
+      </div>
+      <div class="foot-col">
+        <h5>服务</h5>
+        <a href="#plans">会员方案</a>
+        <a href="#faq">常见问题</a>
+        <a href="#">版权合作</a>
+        <a href="#">商务联系</a>
+      </div>
+      <div class="foot-col">
+        <h5>关于</h5>
+        <a href="#">品牌介绍</a>
+        <a href="#">加入我们</a>
+        <a href="#">用户协议</a>
+        <a href="#">隐私政策</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2024 九一樱花动漫 · 保留所有权利</span>
+      <div class="links">
+        <a href="#">内容许可</a>
+        <a href="#">侵权投诉</a>
+        <a href="#">未成年人保护</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- 花瓣生成 ---------- */
+(function(){
+  const box = document.getElementById('petals');
+  const n = 18;
+  for(let i=0;i<n;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.style.left = (Math.random()*100) + 'vw';
+    const size = 8 + Math.random()*10;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.animationDuration = (9 + Math.random()*12) + 's';
+    p.style.animationDelay = (-Math.random()*18) + 's';
+    p.style.opacity = 0.25 + Math.random()*0.45;
+    box.appendChild(p);
+  }
+})();
+
+/* ---------- 视频卡片数据 ---------- */
+const videos = [
+  {id:1,type:'anime',ep:'第12话',title:'樱色回响 · 夏夜的风',desc:'当旧友在樱花树下重逢，那段被风吹散的约定重新有了形状。',dur:'24:18',who:'九一原创剧场',av:'#e64a75',tag:'更新中',plays:'182 万'},
+  {id:2,type:'short',ep:'原创',title:'一秒的夏天',desc:'一部关于蝉鸣、汽水与告别的三分钟短篇，用手绘逐帧完成。',dur:'03:42',who:'青叶工作室',av:'#5b8dee',tag:'新作',plays:'86 万'},
+  {id:3,type:'edit',ep:'精选',title:'那些年我们追过的OP剪辑',desc:'五分钟重温三十首经典片头曲，总有一句前奏让你起鸡皮疙瘩。',dur:'05:10',who:'剪辑师小南',av:'#2fc78e',tag:'剪辑',plays:'241 万'},
+  {id:4,type:'anime',ep:'第08话',title:'星海邮差 · 未寄出的信',desc:'穿越星海的信件，最终抵达了一个意想不到的收件人手中。',dur:'23:56',who:'九一原创剧场',av:'#7f9cf5',tag:'更新中',plays:'139 万'},
+  {id:5,type:'behind',ep:'幕后',title:'配音棚的一天：主役声优访谈',desc:'跟着镜头走进录音棚，听听角色声音背后那些反复打磨的瞬间。',dur:'11:24',who:'九一纪录片组',av:'#f7b731',tag:'花絮',plays:'64 万'},
+  {id:6,type:'short',ep:'原创',title:'雨天便利店',desc:'深夜便利店里，两个陌生人因为一把伞，聊起了各自的生活。',dur:'06:38',who:'柑橘动画',av:'#ff8c42',tag:'新作',plays:'97 万'},
+  {id:7,type:'edit',ep:'精选',title:'治愈系场景混剪：风、光与街道',desc:'把二十部作品里最安静的镜头拼在一起，做一段可以循环的背景。',dur:'04:28',who:'剪辑师阿树',av:'#2fc78e',tag:'剪辑',plays:'121 万'},
+  {id:8,type:'anime',ep:'第24话',title:'纸飞机航线 · 终章',desc:'第一季收官。纸飞机飞过整座城市，落在了最初出发的地方。',dur:'24:02',who:'九一原创剧场',av:'#e64a75',tag:'完结',plays:'213 万'},
+  {id:9,type:'behind',ep:'幕后',title:'分镜稿到成片：一集动画的诞生',desc:'从脚本会议到最终合成，完整还原一集动画在九一的制作流程。',dur:'15:47',who:'九一纪录片组',av:'#f7b731',tag:'花絮',plays:'58 万'}
+];
+
+/* ---------- 渲染视频卡片 ---------- */
+const palettes = {
+  anime:['#ffd3e0','#ffb3c9','#a7c0ff'],
+  short:['#d6e4ff','#a7c0ff','#9be7d0'],
+  edit:['#ffe9c9','#ffd08a','#ffb3c9'],
+  behind:['#e6dcff','#c6b3ff','#a7c0ff']
+};
+function sceneSVG(type,seed){
+  const c = palettes[type] || palettes.anime;
+  const rotate = (seed*37)%60 - 30;
+  return `
+  <svg viewBox="0 0 480 270" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="g${seed}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${c[0]}"/>
+        <stop offset="55%" stop-color="${c[1]}"/>
+        <stop offset="100%" stop-color="${c[2]}"/>
+      </linearGradient>
+    </defs>
+    <rect width="480" height="270" fill="url(#g${seed})"/>
+    <circle cx="${360 - seed*11}" cy="${60 + seed*7}" r="${46 + seed*3}" fill="#ffffff" opacity="0.42"/>
+    <path d="M0 ${190 + seed*4} Q120 ${150 + seed*6} 250 ${185 + seed*3} T480 ${170 + seed*5} L480 270 L0 270 Z" fill="#ffffff" opacity="0.32"/>
+    <path d="M0 ${222 + seed*3} Q150 ${196 + seed*5} 300 ${220 + seed*2} T480 ${212 + seed*4} L480 270 L0 270 Z" fill="#ffffff" opacity="0.5"/>
+    <g transform="translate(${70 + seed*9} ${150 + seed*4}) rotate(${rotate})" opacity="0.9">
+      <rect x="-16" y="-22" width="32" height="44" rx="8" fill="#ffffff" opacity="0.85"/>
+      <circle cx="0" cy="-6" r="6" fill="${c[2]}"/>
+      <rect x="-8" y="6" width="16" height="4" rx="2" fill="${c[1]}"/>
+    </g>
+    <g fill="#ffffff" opacity="0.55">
+      <circle cx="${120 + seed*13}" cy="${80 + seed*5}" r="4"/>
+      <circle cx="${200 + seed*7}" cy="${120 + seed*3}" r="3"/>
+      <circle cx="${320 - seed*6}" cy="${140 + seed*6}" r="5"/>
+    </g>
+  </svg>`;
+}
+
+function renderVideos(filter){
+  const grid = document.getElementById('videoGrid');
+  const list = filter==='all' ? videos : videos.filter(v=>v.type===filter);
+  grid.innerHTML = list.map(v=>`
+    <article class="video-card reveal in" data-type="${v.type}">
+      <div class="thumb">
+        ${sceneSVG(v.type, v.id)}
+        <span class="ep">${v.ep}</span>
+        <span class="dur">${v.dur}</span>
+      </div>
+      <div class="video-body">
+        <h3>${v.title}</h3>
+        <p class="desc">${v.desc}</p>
+        <div class="video-foot">
+          <span class="who">
+            <span class="avatar" style="background:${v.av}">${v.who.slice(0,1)}</span>
+            ${v.who}
+          </span>
+          <span>${v.plays} 播放</span>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+renderVideos('all');
+
+/* ---------- 分类切换 ---------- */
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    renderVideos(tab.dataset.filter);
+  });
+});
+
+/* ---------- 热榜 ---------- */
+const ranks = [
+  {t:'樱色回响 · 夏夜的风',s:'九一原创剧场 · 24 分钟',h:'98.6 万'},
+  {t:'星海邮差 · 未寄出的信',s:'九一原创剧场 · 23 分钟',h:'76.2 万'},
+  {t:'纸飞机航线 · 终章',s:'九一原创剧场 · 24 分钟',h:'71.4 万'},
+  {t:'一秒的夏天',s:'青叶工作室 · 原创短片',h:'52.8 万'},
+  {t:'那些年我们追过的OP剪辑',s:'剪辑师小南 · 选辑',h:'44.1 万'},
+  {t:'雨天便利店',s:'柑橘动画 · 原创短片',h:'38.7 万'},
+  {t:'分镜稿到成片：一集动画的诞生',s:'九一纪录片组 · 幕后',h:'29.3 万'}
+];
+document.getElementById('rankList').innerHTML = ranks.map((r,i)=>`
+  <div class="rank-item">
+    <span class="no">${String(i+1).padStart(2,'0')}</span>
+    <div class="info"><b>${r.t}</b><span>${r.s}</span></div>
+    <span class="hot">${r.h}</span>
+  </div>
+`).join('');
+
+/* ---------- FAQ 手风琴 ---------- */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  if(item.classList.contains('open')){
+    a.style.maxHeight = a.scrollHeight + 'px';
+  }
+  q.addEventListener('click',()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(other=>{
+      other.classList.remove('open');
+      other.querySelector('.faq-a').style.maxHeight = '0px';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ---------- 滚动出现动画 ---------- */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(e=>e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(e=>io.observe(e));
+})();
+
+/* ---------- 数字滚动 ---------- */
+(function(){
+  const targets = document.querySelectorAll('.band b');
+  if(!targets.length) return;
+  const parse = (txt)=>{
+    const m = txt.match(/[\d,.]+/);
+    return m ? m[0] : null;
+  };
+  const animate = (el)=>{
+    const raw = el.textContent.trim();
+    const numStr = parse(raw);
+    if(!numStr) return;
+    const target = parseFloat(numStr.replace(/,/g,''));
+    const suffix = raw.replace(numStr,'');
+    const hasComma = numStr.includes(',');
+    const dur = 1300;
+    const start = performance.now();
+    const step = (now)=>{
+      const p = Math.min((now-start)/dur,1);
+      const eased = 1 - Math.pow(1-p,3);
+      let val = Math.round(target*eased);
+      let out = String(val);
+      if(hasComma) out = out.replace(/\B(?=(\d{3})+(?!\d))/g,',');
+      el.textContent = out + suffix;
+      if(p<1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        animate(en.target);
+        io.unobserve(en.target);
+      }
+    });
+  },{threshold:0.5});
+  targets.forEach(t=>io.observe(t));
+})();
+
+/* ---------- 导航平滑滚动偏移 ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    const id = a.getAttribute('href');
+    if(id.length>1){
+      const el = document.querySelector(id);
+      if(el){
+        e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY - 78;
+        window.scrollTo({top:y,behavior:'smooth'});
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
